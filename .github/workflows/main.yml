@@ -8,13 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: actions/hello-world-composite-action@v1
+        uses: singharv/hello-world-composite-action@main
         with:
           who-to-greet: 'Mona the Octocat'
-      - run: echo random-number "$RANDOM_NUMBER"
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
-        env:
-          RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
-
+      - run: echo random-number ${{ steps.foo.outputs.random-number-bash }}
+        shell: bash
 
 
